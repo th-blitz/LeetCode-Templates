@@ -1,5 +1,6 @@
 
 
+
 def merge_sort(array):
 
     def sort_recur(left, right):
@@ -14,7 +15,7 @@ def merge_sort(array):
 
         i = 0 # mid - left 
         j = 0 # right - mid
-        k = 0 # left - right 
+        k = 0 # right - left 
         merged_array = [0] * (right - left)
 
         for k in range(right - left):
@@ -37,9 +38,16 @@ def merge_sort(array):
 
     return sort_recur(0, len(array))
 
-array = [1, 3, -4]
+import random
+from tqdm import tqdm
 
-sorted_index = merge_sort(array)
-print(sorted_index)
-sorted_array = [array[i] for i in sorted_index]
-print(sorted_array)
+array_len = 100
+num_range = (-100, 100)
+randomlist = [0] * array_len
+for i in tqdm(range(array_len)):
+    randomlist[i] = random.randint(num_range[0],num_range[1])
+    
+
+sorted_index = merge_sort(randomlist)
+print([randomlist[i] for i in sorted_index])
+
