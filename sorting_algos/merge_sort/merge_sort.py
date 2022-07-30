@@ -40,14 +40,15 @@ def merge_sort(array):
 
 import random
 from tqdm import tqdm
+import time
 
-array_len = 100
-num_range = (-100, 100)
+array_len = 10**5
+num_range = (-10**4, 10**4)
 randomlist = [0] * array_len
 for i in tqdm(range(array_len)):
     randomlist[i] = random.randint(num_range[0],num_range[1])
     
-
+prev_time = time.time()
 sorted_index = merge_sort(randomlist)
-print([randomlist[i] for i in sorted_index])
+print(time.time() - prev_time)
 
