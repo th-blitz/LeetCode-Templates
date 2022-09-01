@@ -65,8 +65,7 @@ struct ListNode* ListNode() {
 
 void stack_append(struct Stack* head, void *data, size_t bytes) {
     struct ListNode* root = ListNode();
-    root -> val = (void*)malloc(bytes);
-    memcpy(root -> val, data, bytes);
+    root -> val = data;
     root -> bytes = bytes;
     root -> next = head -> next;
     head -> next = root;
@@ -89,8 +88,7 @@ void* stack_pop(struct Stack* head) {
 
 void deque_appendleft(struct Deque* queue, void* data, size_t bytes) {
     struct DoubleListNode* root = DoubleListNode();
-    root -> val = (void*)malloc(bytes);
-    memcpy(root -> val, data, bytes);
+    root -> val = data;
     root -> bytes = bytes;
     if (queue -> tail == NULL && queue -> head == NULL) {
         queue -> head = root;
@@ -131,8 +129,7 @@ void* deque_popleft(struct Deque* queue) {
 
 void deque_append(struct Deque* queue, void *data, size_t bytes) {
     struct DoubleListNode* root = DoubleListNode();
-    root -> val = (void*)malloc(bytes);
-    memcpy(root -> val, data, bytes);
+    root -> val = data;
     root -> bytes = bytes;
     if (queue -> tail == NULL && queue -> head == NULL) {
         queue -> tail = root;
@@ -186,65 +183,70 @@ void print_queue(struct Deque* queue) {
     printf("\n");
 }
 
-int main() {
+// int main() {
 
-    struct Stack* head = Stack();
-
-    int num = 6;
-    stack_append(head, &num, sizeof(int));
-
-    float flt = .88;
-    stack_append(head, &flt, sizeof(float));
+//     struct Stack* head = Stack();
     
-    char chr = 'y';
-    stack_append(head, &chr, sizeof(char));
+//     int num = 6;
+//     stack_append(head, &num, sizeof(int));
 
-    void* data;
-
-    data = stack_pop(head);
-
-    printf("%c \n", *(char *)data);
-    free(data);
-
-    data = stack_pop(head);
-    printf("%f \n", *(float *)data);
-    free(data);
+//     float flt = .88;
+//     stack_append(head, &flt, sizeof(float));
     
-    data = stack_pop(head);
-    printf("%d \n", *(int *)data);
-    free(data);
+//     char chr = 'y';
+//     stack_append(head, &chr, sizeof(char));
 
-    data = stack_pop(head);
-    printf("%p \n", data);
+//     void* data;
 
-    free(head);
+//     data = stack_pop(head);
 
-    struct Deque* queue = Deque();
+//     printf("%c \n", *(char *)data);
+    
+//     printf("%f \n", *(float *)stack_pop(head));
+//     printf("%d \n", *(int *)stack_pop(head));
 
-    num = 0;
-    deque_appendleft(queue, &num, sizeof(int));
-    num = 1;
-    deque_appendleft(queue, &num, sizeof(int));
-    num = -1;
-    deque_appendleft(queue, &num, sizeof(int));
-    num = 54;
-    deque_append(queue, &num, sizeof(int));
-    num = 34;
-    deque_append(queue, &num, sizeof(int));
-    num = 3;
-    deque_appendleft(queue, &num, sizeof(int));
+//     free(head);
+//     // free(data);
 
-    print_queue(queue);
+//     // data = stack_pop(head);
+//     // printf("%f \n", *(float *)data);
+//     // free(data);
+    
+//     // data = stack_pop(head);
+//     // printf("%d \n", *(int *)data);
+//     // free(data);
 
-    deque_pop(queue);
-    print_queue(queue);
-    deque_popleft(queue);
-    deque_popleft(queue);
-    print_queue(queue);
-    deque_popleft(queue);
-    deque_popleft(queue);
-    deque_popleft(queue);
-    deque_popleft(queue);
+//     // data = stack_pop(head);
+//     // printf("%p \n", data);
 
-    return 0;
-}
+//     // free(head);
+
+//     // struct Deque* queue = Deque();
+
+//     // num = 0;
+//     // deque_appendleft(queue, &num, sizeof(int));
+//     // num = 1;
+//     // deque_appendleft(queue, &num, sizeof(int));
+//     // num = -1;
+//     // deque_appendleft(queue, &num, sizeof(int));
+//     // num = 54;
+//     // deque_append(queue, &num, sizeof(int));
+//     // num = 34;
+//     // deque_append(queue, &num, sizeof(int));
+//     // num = 3;
+//     // deque_appendleft(queue, &num, sizeof(int));
+
+//     // print_queue(queue);
+
+//     // deque_pop(queue);
+//     // print_queue(queue);
+//     // deque_popleft(queue);
+//     // deque_popleft(queue);
+//     // print_queue(queue);
+//     // deque_popleft(queue);
+//     // deque_popleft(queue);
+//     // deque_popleft(queue);
+//     // deque_popleft(queue);
+
+//     return 0;
+// }
