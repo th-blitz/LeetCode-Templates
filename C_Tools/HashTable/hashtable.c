@@ -31,7 +31,7 @@ unsigned long int max_val(unsigned long int a, unsigned long int b) {
 
 unsigned long int nearest_prime(unsigned long int num) {
 
-    unsigned char* primes = (unsigned char*)malloc(num * sizeof(unsigned char));
+    unsigned char* primes = (unsigned char*)malloc((num + 1) * sizeof(unsigned char));
     
     for (unsigned long int i = 0; i < num; i++) {
         primes[i] = 1;
@@ -160,6 +160,20 @@ void* get(struct HashTable* hash_table, void* key, unsigned long int hash) {
     return val;
 }
 
+void clear_hashtable(struct HashTable* hash_table) {
+    for (unsigned long int i = 0; i < hash_table -> bucket_len; i++) {
+        if (hash_table -> bucket[i] != NULL) {
+            free(hash_table -> bucket[i]);
+        }
+    }
+}
+
+void free_hashtable(struct HashTable* hash_table) {
+    clear_hashtable(hash_table);
+    free(hash_table -> bucket);
+    free(hash_table);
+}
+
 void print_hashtable(struct HashTable* hash_table) {
     for (unsigned long int i = 0; i < hash_table -> bucket_len; i++) {
         if (hash_table -> bucket[i] != NULL) {
@@ -182,7 +196,7 @@ unsigned long int simple_hash(const char* key) {
 
 int main() {
 
-    struct HashTable* hashmap = HashTable(4);
+    struct HashTable* hashmap = HashTable(2);
 
     printf("%ld \n", hashmap -> bucket_len);
 
@@ -199,6 +213,8 @@ int main() {
     insert(hashmap, "(", "{", simple_hash("("));
     print_hashtable(hashmap);
     printf("%s \n", (char *)get(hashmap, "a", simple_hash("a")));
+
+    free_hashtable(hashmap);
 
     return 0;
 }
