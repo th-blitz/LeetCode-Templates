@@ -101,6 +101,10 @@ int heap_pop(struct heap* heap) {
     return val;
 }
 
+void heap_free(struct heap* heap) {
+    free(heap -> array);
+    free(heap);
+}
 
 int main() {
 
@@ -113,8 +117,13 @@ int main() {
     }
 
     for (int i = 0; i < arraySize; i++) {
+        printf("\n");
+        for (int i = 0; i < arraySize; i++) {
+            printf("%d, ", heap -> array[i]);
+        }
         printf("%d, ", heap -> pop(heap));
     }
+    
     
     printf("\n");
 }
